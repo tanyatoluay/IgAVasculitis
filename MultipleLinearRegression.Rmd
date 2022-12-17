@@ -1,0 +1,389 @@
+---
+title: "Biostatistics Part 2"
+author: "Tanya Deniz Toluay"
+date: '2022-12-11'
+output:
+  html_document:
+    theme: cosmo
+    code_folding: hide
+    toc: true
+    toc_float:
+      smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+# Used libraries 
+library(readxl)
+library(tidyverse)
+library(stats)
+library(ggiraphExtra)
+```
+
+
+```{r}
+
+# Import the data including the healthy controls 
+Data <- read_excel("C:/deskt/DIR/7th/Desktop/Biostatistics Vasculitis/Data.xlsx", 
+                   sheet = "SubSet Data")
+
+# New data frame excluding the healthy controls 
+Data2 <- Data[!Data$Subgroups == "Healthy Control",]
+
+```
+
+
+## Multiple Linear Regression
+
+
+### Age
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(Age ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+
+### BMI 
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(BMI ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+
+### Adipo
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(Adipo ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+
+
+### LBP
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(LBP ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+
+### MMP1
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(MMP1 ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+
+### CCL19
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(CCL19 ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+### Kalikrein5
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(Kalikrein5 ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+### CCL3
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(CCL3 ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+### Leptin
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(Leptin ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+### CXCL5
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(CXCL5 ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+### Osteopontin
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(Osteopontin ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+### IL-15
+
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(`IL-15` ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+
+### CXCL10
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(CXCL10 ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+### ANGPTLA4
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(ANGPTLA4 ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+### SERPINA12
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(SERPINA12 ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+
+### IL-18
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(`IL-18` ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+
+### FABP-4
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(`FABP-4` ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```
+
+
+### BMI
+
+```{r echo=FALSE}
+
+# Multiple Linear Regression 
+fit <- lm(BMI ~ Subgroups + Sex + Smoking, data=Data2)
+summary(fit) # show results
+coefficients(fit) # model coefficients
+confint(fit, level=0.95) # CIs for model parameters
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table
+vcov(fit) # covariance matrix for model parameters
+influence(fit) # regression diagnostics
+layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
+plot(fit)
+
+```

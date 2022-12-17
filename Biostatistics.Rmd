@@ -1,0 +1,1997 @@
+---
+title: "Biostatistics"
+author: "Tanya Deniz Toluay"
+date: '2022-12-11'
+output:
+  html_document:
+    theme: cosmo
+    code_folding: hide
+    toc: true
+    toc_float:
+      smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+# Used libraries 
+library(readxl)
+library(tidyverse)
+library(stats)
+library(ggiraphExtra)
+```
+
+
+```{r}
+
+# Import the data including the healthy controls 
+Data <- read_excel("C:/deskt/DIR/7th/Desktop/Biostatistics Vasculitis/Data.xlsx", 
+                   sheet = "SubSet Data")
+
+# New data frame excluding the healthy controls 
+Data2 <- Data[!Data$`Patient Subgroups` == "Healthy Control",]
+
+```
+
+
+
+Submitted graphs inspect the quantitative values per subgroup. Please find in the provided document:
+
+* Bar graphs for the quantitative summary visualisation
+* Box plots for demonstrating the locality, spread and skewness and box plots with jitter for a better inspection of the diversion of data
+* Q-Q plots to investigate the distribution
+* Violin plots which are a mix of a box plot and a kernel density plot, show peaks in the data as well as the locality, spread and skewness
+
+
+The sub-groups include: 
+
+* Patients with skin-limited disease (n=21)
+* Patients with renal involvement (n=20)
+* Patients with gastrointestinal involvement (n=7)
+* Patients with gastrointestinal and renal involvement (n=12)
+* Healthy control group (n=22)
+
+The given graphs are both including and excluding the healthy control group for better inspection and they are created regarding sex and the smoking categories. 
+
+
+
+
+## Bar Plots
+
+### Including Healthy Controls 
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Sex
+
+```{r echo=FALSE}
+
+ggplot(Data, aes(Sex, `Adipo (μg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `LBP (μg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data, aes(Sex, `MMP1 ng/ml`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CCL19 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Kalikrein5 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Leptin (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CXCL5 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data, aes(Sex, `Osteopontin (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `IL-15 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CXCL10 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `SERPINA12 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `IL-18 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `FABP-4 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+
+```
+:::
+
+::: {}
+
+
+#### By Smoking
+
+```{r echo=FALSE}
+
+ggplot(Data, aes(Smoking, `Adipo (μg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `LBP (μg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data, aes(Smoking, `MMP1 ng/ml`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CCL19 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Kalikrein5 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CCL3 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Leptin (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CXCL5 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data, aes(Smoking, `Osteopontin (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `IL-15 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CXCL10 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `ANGPTLA4 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `SERPINA12 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `IL-18 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `FABP-4 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::::
+
+
+
+
+
+
+### Excluding Healthy Controls 
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Sex
+
+```{r echo=FALSE}
+
+ggplot(Data2, aes(Sex, `Adipo (μg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `LBP (μg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data2, aes(Sex, `MMP1 ng/ml`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CCL19 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Kalikrein5 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Leptin (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CXCL5 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data2, aes(Sex, `Osteopontin (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `IL-15 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CXCL10 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `SERPINA12 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `IL-18 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `FABP-4 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+:::
+
+::: {}
+
+
+#### By Smoking
+
+```{r echo=FALSE}
+
+ggplot(Data2, aes(Smoking, `Adipo (μg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `LBP (μg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data2, aes(Smoking, `MMP1 ng/ml`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CCL19 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Kalikrein5 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CCL3 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Leptin (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CXCL5 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data2, aes(Smoking, `Osteopontin (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `IL-15 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CXCL10 (pg/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `ANGPTLA4 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `SERPINA12 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `IL-18 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `FABP-4 (ng/ml)`)) +
+  geom_bar(stat="identity", fill="black", alpha=0.7) +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::::
+
+
+
+
+
+
+## Box Plots 
+
+### Including Healthy Controls 
+
+
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Sex
+
+```{r echo=FALSE}
+ggplot(Data, aes(Sex, `Adipo (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `LBP (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data, aes(Sex, `MMP1 ng/ml`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CCL19 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Kalikrein5 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Leptin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CXCL5 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Osteopontin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `IL-15 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CXCL10 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `SERPINA12 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `IL-18 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `FABP-4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::: {}
+
+#### Including Jitters
+
+```{r echo=FALSE}
+ggplot(Data, aes(Sex, `Adipo (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `LBP (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data, aes(Sex, `MMP1 ng/ml`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CCL19 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Kalikrein5 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Leptin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CXCL5 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Osteopontin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `IL-15 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CXCL10 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `SERPINA12 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `IL-18 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `FABP-4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+
+:::
+
+::::
+
+
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Smoking 
+
+```{r echo=FALSE}
+ggplot(Data, aes(Smoking, `Adipo (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `LBP (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data, aes(Smoking, `MMP1 ng/ml`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CCL19 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Kalikrein5 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CCL3 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Leptin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CXCL5 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data, aes(Smoking, `Osteopontin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `IL-15 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CXCL10 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `SERPINA12 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `IL-18 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `FABP-4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::: {}
+
+#### Including Jitters
+
+```{r echo=FALSE}
+ggplot(Data, aes(Smoking, `Adipo (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `LBP (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data, aes(Smoking, `MMP1 ng/ml`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CCL19 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Kalikrein5 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Leptin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CXCL5 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Osteopontin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `IL-15 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CXCL10 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `ANGPTLA4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `SERPINA12 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `IL-18 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `FABP-4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::::
+
+
+
+
+
+### Excluding Healthy Controls
+
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Sex
+
+```{r echo=FALSE}
+ggplot(Data2, aes(Sex, `Adipo (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `LBP (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data2, aes(Sex, `MMP1 ng/ml`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CCL19 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Kalikrein5 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Leptin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CXCL5 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Osteopontin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `IL-15 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CXCL10 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `SERPINA12 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `IL-18 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `FABP-4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::: {}
+
+#### Including Jitters
+
+```{r echo=FALSE}
+ggplot(Data2, aes(Sex, `Adipo (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `LBP (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data2, aes(Sex, `MMP1 ng/ml`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CCL19 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Kalikrein5 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Leptin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CXCL5 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Osteopontin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `IL-15 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CXCL10 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `SERPINA12 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `IL-18 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `FABP-4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::::
+
+
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Smoking 
+
+```{r echo=FALSE}
+ggplot(Data2, aes(Smoking, `Adipo (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `LBP (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data2, aes(Smoking, `MMP1 ng/ml`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CCL19 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Kalikrein5 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CCL3 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Leptin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CXCL5 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data2, aes(Smoking, `Osteopontin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `IL-15 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CXCL10 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `SERPINA12 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `IL-18 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `FABP-4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::: {}
+
+#### Including Jitters
+
+```{r echo=FALSE}
+ggplot(Data2, aes(Smoking, `Adipo (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `LBP (μg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data2, aes(Smoking, `MMP1 ng/ml`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CCL19 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Kalikrein5 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Leptin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CXCL5 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Osteopontin (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `IL-15 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CXCL10 (pg/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `ANGPTLA4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `SERPINA12 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `IL-18 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `FABP-4 (ng/ml)`)) +
+  geom_boxplot(position = "dodge", fill = "grey66", colour = "black") +
+  geom_jitter() +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::::
+
+
+
+## Q-Q Plots 
+
+### Including Healthy Controls
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Sex 
+
+```{r echo=FALSE, warning= FALSE, message=FALSE, error=FALSE}
+
+ggplot(data = Data, aes(sample=BMI)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("BMI Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`Adipo (μg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`LBP (μg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`MMP1 ng/ml`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`CCL19 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`Kalikrein5 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`CCL3 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`Leptin (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`CXCL5 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`Osteopontin (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`IL-15 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`CXCL10 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`ANGPTLA4 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`SERPINA12 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`IL-18 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`FABP-4 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+
+:::
+
+::: {}
+
+
+#### By Smoking 
+
+```{r echo=FALSE, warning= FALSE, message=FALSE, error=FALSE}
+
+ggplot(data = Data, aes(sample=BMI)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("BMI per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`Adipo (μg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`LBP (μg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`MMP1 ng/ml`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`CCL19 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`Kalikrein5 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`CCL3 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`Leptin (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`CXCL5 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`Osteopontin (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`IL-15 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`CXCL10 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`ANGPTLA4 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`SERPINA12 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`IL-18 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data, aes(sample=`FABP-4 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::::
+
+### Excluding Healthy Controls 
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Sex 
+
+```{r echo=FALSE, warning= FALSE, message=FALSE, error=FALSE}
+
+ggplot(data = Data2, aes(sample=BMI)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("BMI Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`Adipo (μg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`LBP (μg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`MMP1 ng/ml`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`CCL19 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`Kalikrein5 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`CCL3 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`Leptin (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`CXCL5 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`Osteopontin (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`IL-15 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`CXCL10 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`ANGPTLA4 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`SERPINA12 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`IL-18 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`FABP-4 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Sex ~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+
+:::
+
+::: {}
+
+
+#### By Smoking 
+
+```{r echo=FALSE, warning= FALSE, message=FALSE, error=FALSE}
+
+ggplot(data = Data2, aes(sample=BMI)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("BMI per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`Adipo (μg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`LBP (μg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`MMP1 ng/ml`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`CCL19 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`Kalikrein5 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`CCL3 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`Leptin (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`CXCL5 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`Osteopontin (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`IL-15 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`CXCL10 (pg/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`ANGPTLA4 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`SERPINA12 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`IL-18 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(data = Data2, aes(sample=`FABP-4 (ng/ml)`)) +
+  geom_qq() + 
+  geom_qq_line(color="red") + 
+  facet_grid(Smoking ~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::::
+
+
+## Violin Plot
+
+### Including Healthy Controls
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Sex
+
+```{r echo=FALSE, warning= FALSE, message=FALSE, error=FALSE}
+
+ggplot(Data, aes(Sex, `Adipo (μg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data, aes(Sex, `LBP (μg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data, aes(Sex, `MMP1 ng/ml`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CCL19 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Kalikrein5 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `Leptin (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CXCL5 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data, aes(Sex, `Osteopontin (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `IL-15 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `CXCL10 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `SERPINA12 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `IL-18 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Sex, `FABP-4 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+
+:::
+
+::: {}
+
+#### By Smoking
+
+```{r echo=FALSE, warning= FALSE, message=FALSE, error=FALSE}
+
+ggplot(Data, aes(Smoking, `Adipo (μg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data, aes(Smoking, `LBP (μg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data, aes(Smoking, `MMP1 ng/ml`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CCL19 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Kalikrein5 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CCL3 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Leptin (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CXCL5 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `Osteopontin (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `IL-15 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `CXCL10 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `ANGPTLA4 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `SERPINA12 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `IL-18 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data, aes(Smoking, `FABP-4 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::::
+
+### Excluding Healthy Controls 
+
+:::: {style="display: flex;"}
+
+::: {}
+
+#### By Sex
+
+```{r echo=FALSE, warning= FALSE, message=FALSE, error=FALSE}
+
+ggplot(Data2, aes(Sex, `Adipo (μg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data2, aes(Sex, `LBP (μg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data2, aes(Sex, `MMP1 ng/ml`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CCL19 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Kalikrein5 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CCL3 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `Leptin (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CXCL5 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data2, aes(Sex, `Osteopontin (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `IL-15 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `CXCL10 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `ANGPTLA4 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `SERPINA12 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `IL-18 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Sex, `FABP-4 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+
+:::
+
+::: {}
+
+#### By Smoking
+
+```{r echo=FALSE, warning= FALSE, message=FALSE, error=FALSE}
+
+ggplot(Data2, aes(Smoking, `Adipo (μg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Adipo (μg/ml) Levels per Patient SubGroup")
+
+
+ggplot(Data2, aes(Smoking, `LBP (μg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("LBP (μg/ml) Levels per Patient SubGroup")
+  
+ggplot(Data2, aes(Smoking, `MMP1 ng/ml`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("MMP1 ng/ml Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CCL19 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL19 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Kalikrein5 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Kalikrein5 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CCL3 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CCL3 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Leptin (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Leptin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CXCL5 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL5 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `Osteopontin (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("Osteopontin (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `IL-15 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-15 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `CXCL10 (pg/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("CXCL10 (pg/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `ANGPTLA4 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("ANGPTLA4 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `SERPINA12 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("SERPINA12 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `IL-18 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("IL-18 (ng/ml) Levels per Patient SubGroup")
+
+ggplot(Data2, aes(Smoking, `FABP-4 (ng/ml)`)) +
+  geom_violin(fill = "grey66", colour = "black") +
+  facet_wrap(~ `Patient Subgroups`) +
+  ggtitle("FABP-4 (ng/ml) Levels per Patient SubGroup")
+
+```
+
+:::
+
+::::

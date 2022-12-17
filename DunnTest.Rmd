@@ -1,0 +1,88 @@
+---
+title: "Dunn Test"
+author: "Tanya Deniz Toluay"
+date: '2022-12-15'
+output:
+  html_document:
+    theme: cosmo
+    code_folding: hide
+    toc: true
+    toc_float:
+      smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+library(FSA)
+library(readxl)
+```
+
+## Adipo
+
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+Data2 <- read_excel("C:/deskt/DIR/7th/Desktop/Biostatistics Vasculitis/Data.xlsx", 
+                   sheet = "SubSet Data")
+dunnTest(Adipo ~ Subgroups, data=Data2, method="none")
+```
+
+## LBP
+
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(LBP ~ Subgroups, data=Data2, method="none")
+```
+
+## MMP1
+
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(MMP1 ~ Subgroups, data=Data2, method="none")
+```
+
+## CCL19
+
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(CCL19 ~ Subgroups, data=Data2, method="none")
+```
+
+## Kalikrein5
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(Kalikrein5 ~ Subgroups, data=Data2, method="none")
+```
+
+## CCL3
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(CCL3 ~ Subgroups, data=Data2, method="none")
+```
+
+## Leptin
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(Leptin ~ Subgroups, data=Data2, method="none")
+```
+
+## Osteopontin
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(Osteopontin ~ Subgroups, data=Data2, method="none")
+```
+
+## IL-15
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(`IL-15` ~ Subgroups, data=Data2, method="none")
+```
+
+## CXCL10
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(CXCL10 ~ Subgroups, data=Data2, method="none")
+```
+
+## ANGPTLA4
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(ANGPTLA4 ~ Subgroups, data=Data2, method="none")
+```
+
+## IL-18
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(`IL-18` ~ Subgroups, data=Data2, method="none")
+```
+
+## FABP-4
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+dunnTest(`FABP-4` ~ Subgroups, data=Data2, method="none")
+```
